@@ -8,11 +8,11 @@
 "use strict";
 const PROMPT = require('readline-sync');
 
-let LotNum, nBed, nBath, nCar, cost;
-const base=50000,pBed=17000 ,pBath=12500 ,pCar=6000;
+let lotNum, numBedroom, numBathroom, numCar, cost;
+
 
 function main() {
-    setLotNum();// Lot Number
+    setlotNumber();
     setBedRooms();// Number of bedrooms
     setBathRooms();// Number of bathrooms
     setNumCars();//Number of cars
@@ -22,23 +22,27 @@ function main() {
 }
 main();
 function setcost() {
-    cost= base + nBed*pBed + nBath*pBath + nCar*pCar;
+    const BASE_PRICE= 50000,
+        PER_BED_PRICE=17000,
+        PER_BATH_PRICE=12500,
+        PER_CAR_PRICE=6000;
+    cost= BASE_PRICE + numBedroom * PER_BED_PRICE + numBathroom * PER_BATH_PRICE + numCar * PER_CAR_PRICE;
 }
 function printResults() {
     process.stdout.write('\x1Bc'); //Clears the screen
-    console.log("\nThe cost of a new home in lot number " + LotNum + " of the River Falls subdivision, with " + nBed + " bedrooms, " + nBath + " bathrooms and a " + nCar + " car garage will be $" + cost);
+    console.log("\nThe cost of a new home in lot number " + lotNum + " of the River Falls subdivision, with " + numBedroom + " bedrooms, " + numBathroom + " bathrooms and a " + numCar + " car garage will be $" + cost);
 }
-function setLotNum() {
-    LotNum = PROMPT.question(`\nPlease enter a River Falls lot number: `);
+function setlotNumber() {
+    lotNum = PROMPT.question(`\nPlease enter a River Falls lot number: `);
 }
 function setBedRooms() {
-    nBed = PROMPT.question(`\nWhat will be the number of bedrooms in the home? `);
+    numBedroom = PROMPT.question(`\nHow many bedrooms will the home on lot ` + lotNum + ' have? ');
 }
 function setBathRooms() {
-    nBath = PROMPT.question(`\nHow many bathrooms will this new home have? `);
+    numBathroom = PROMPT.question(`\nWith ` + numBedroom + ' bedrooms in the home how many bathrooms would you like? ');
 }
 function setNumCars() {
-    nCar = PROMPT.question(`\nWhat will be the vehicle capacity of the garage? `);
+    numCar = PROMPT.question(`\nWhat will be the vehicle capacity of the garage? `);
 }
 
 
